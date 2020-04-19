@@ -27,7 +27,7 @@ async def ping(ctx):
     embed.add_field(name="Заддержка", value=f"**Твоя заддержка** - {client.latency * 1000}ms")
     await ctx.send(embed=embed)
 
-@client.command(aliases=['8ball', 'test'])
+@client.command(name = )
 async def _8ball(ctx, *, question=None):
     responses = ['Да :white_check_mark:',
                  'Нет :x:',
@@ -69,15 +69,15 @@ async def me(ctx):
     await ctx.send(more)
 
 
-@client.command(pass_context=True)
-async def emhelp(ctx):
-    embed = discord.Embed(
-        title = "FMS",
-        description = "Привет! Ты зашёл на сервер FMS. Что значит FMS? FMS - **FragMovie Server**. Здесь собраны различные мувимейкеры. Также сам основатель (EdS) является начанающим мувимейкером. Ознакомится с YouTube каналом можно в **Профиле** >> **Интеграции**.",
-        colour=discord.Colour.blurple()
-    )
-    embed.add_field(name='Каналы',value='<#687978300508864540> - начальная ифнормация про сервер\n<#687977797905416250> - правила, чё не понятного\n<#688083106624045058> - роли на сервере\n<#688426291778682959> - новости\n<#688427439092662273> - общий чат\n<#688425575890550856> - чат без парвил (пс..замуть его чтоб не мешал)',inline=True)
-    await ctx.send(embed=embed)
+#@client.command(pass_context=True)
+#async def emhelp(ctx):
+   # embed = discord.Embed(
+   #     title = "FMS",
+   #     description = "Привет! Ты зашёл на сервер FMS. Что значит FMS? FMS - **FragMovie Server**. Здесь собраны различные мувимейкеры. Также сам основатель (EdS) является начанающим мувимейкером. Ознакомится с YouTube каналом можно в **Профиле** >> **Интеграции**.",
+   #     colour=discord.Colour.blurple()
+  #  )
+   # embed.add_field(name='Каналы',value='<#687978300508864540> - начальная ифнормация про сервер\n<#687977797905416250> - правила, чё не понятного\n<#688083106624045058> - роли на сервере\n<#688426291778682959> - новости\n<#688427439092662273> - общий чат\n<#688425575890550856> - чат без парвил (пс..замуть его чтоб не мешал)',inline=True)
+ #   await ctx.send(embed=embed)
 
 
 client.run(TOKEN)
