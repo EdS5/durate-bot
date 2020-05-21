@@ -4,6 +4,7 @@ from discord.ext import commands
 from PIL import Image, ImageEnhance, ImageOps, ImageDraw, ImageFilter
 from io import BytesIO
 import requests
+import error
 
 
 client = commands.Bot(command_prefix = '!')
@@ -13,7 +14,7 @@ TOKEN = 'NjM3NzUwNzU3MzE5MjQ1ODM1.XbSttA.FwgfcNENFVZZognRtynzzPeoArI'
 
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.online, activity=discord.Activity(name="support - @EdS#0272", url="https://www.twitch.tv/eds52", type=discord.ActivityType.watching))
+    await client.change_presence(status=discord.Status.online, activity=discord.Activity(name="version 0.1.3 | !help, url="https://www.twitch.tv/eds52", type=discord.ActivityType.stremaing))
     print("Bot is ready.")
 
 
@@ -24,27 +25,38 @@ async def on_ready():
 @client.command()
 async def ping(ctx):
     embed = discord.Embed(colour=0x5180EC)
-    embed.add_field(name="Заддержка", value=f"**Твоя заддержка** - {client.latency * 1000}ms")
+    embed.add_field(name="Заддержка", value=f"**Твоя заддержка** - {round(client.latency, 3)}ms")
     await ctx.send(embed=embed)
 
-@client.command(name = )
+@client.command(name = "8ball")
 async def _8ball(ctx, *, question=None):
-    responses = ['Да :white_check_mark:',
+    responses = ('Да :white_check_mark:',
                  'Нет :x:',
                  'Возможно',
-                 'Никак нет :name_badge:']
+                 'Никак нет :name_badge:')
     embed = discord.Embed(title = 'Волшебный шар', colour=discord.Colour.purple())
     embed.add_field(name="**Вопрос:**", value=question)
     embed.add_field(name="**Ответ:**", value=f"{random.choice(responses)}")
     embedError = discord.Embed(title="Ошибка", description="Не были введены аргемуенты")
-    if question == None:
-        await ctx.send(embed=embedError)
+    embedLenError = discord.Embed(title="Ошибка", description="Введите текст меньше 1024 символов")
+    if question is None:
+        await.ctx.send(embed=embedError)
         return
+    if question is not None:
+        if len(question) >= 1024:
+            await ctx.send(embed=embedLenError)
+            return
     await ctx.send(embed=embed)
 
 
 @client.command(pass_context=True)
-async def case(ctx, arg1, arg2):
+async def server(ctx):
+    embed = discord.Embed(title="Информация про сервер", description=f"Название сервера: **{ctx.guild.name}**\nРегион сервера: **{ctx.guild.region}**")
+    await ctx.send(embed=embed)
+
+
+@client.command(pass_context=True)
+async def case(ctx, arg1=None, arg2=None):
     if arg1 == 'open' and arg2 == 'dlore':
 
         responses = ['awp басков',
@@ -52,6 +64,16 @@ async def case(ctx, arg1, arg2):
                      'калаш малахов',
                      'дигл пугачёва']
         await ctx.send(f'Вам выпало - {random.choice(responses)}')
+    if arg1 is None:
+        embedNoArg = discord.Embed(title="Ошибка",description="Не были введены аргументы")
+        await ctx.send(embed=embedNoArg)
+    if arg1 == "open" and arg2 is None:
+        embedSelectCase = discord.Embed(title="Выберите кейс из доступных")
+        embedSelectCase.add_field(name="dlore",value="Не включает ничего. буквально")
+        await ctx.send(embed=embedSelectCase)
+    else:
+        pass
+
 
 @client.command(pass_context=True)
 async def avatar(ctx):
@@ -61,23 +83,6 @@ async def avatar(ctx):
         im.save(image_binary, "PNG")
         image_binary.seek(0)
         await ctx.send(file=discord.File(fp=image_binary, filename="image.png"))
-
-
-
-@client.command(pass_context=True)
-async def me(ctx):
-    await ctx.send(more)
-
-
-#@client.command(pass_context=True)
-#async def emhelp(ctx):
-   # embed = discord.Embed(
-   #     title = "FMS",
-   #     description = "Привет! Ты зашёл на сервер FMS. Что значит FMS? FMS - **FragMovie Server**. Здесь собраны различные мувимейкеры. Также сам основатель (EdS) является начанающим мувимейкером. Ознакомится с YouTube каналом можно в **Профиле** >> **Интеграции**.",
-   #     colour=discord.Colour.blurple()
-  #  )
-   # embed.add_field(name='Каналы',value='<#687978300508864540> - начальная ифнормация про сервер\n<#687977797905416250> - правила, чё не понятного\n<#688083106624045058> - роли на сервере\n<#688426291778682959> - новости\n<#688427439092662273> - общий чат\n<#688425575890550856> - чат без парвил (пс..замуть его чтоб не мешал)',inline=True)
- #   await ctx.send(embed=embed)
 
 
 client.run(TOKEN)
