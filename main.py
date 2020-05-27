@@ -4,19 +4,19 @@ from discord.ext import commands
 from PIL import Image, ImageEnhance, ImageOps, ImageDraw, ImageFilter
 from io import BytesIO
 import requests
-import error
+import json
 
 
 client = commands.Bot(command_prefix = '!')
 TOKEN = 'NjM3NzUwNzU3MzE5MjQ1ODM1.XbSttA.FwgfcNENFVZZognRtynzzPeoArI'
+client.remove_command("help")
 
 
 
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.online, activity=discord.Activity(name="version 0.1.3 | !help, url="https://www.twitch.tv/eds52", type=discord.ActivityType.stremaing))
+    await client.change_presence(status=discord.Status.online, activity=discord.Activity(name="version 0.1.3 | !help", url="https://www.twitch.tv/eds52", type=discord.ActivityType.streaming))
     print("Bot is ready.")
-
 
 
 
@@ -40,7 +40,7 @@ async def _8ball(ctx, *, question=None):
     embedError = discord.Embed(title="Ошибка", description="Не были введены аргемуенты")
     embedLenError = discord.Embed(title="Ошибка", description="Введите текст меньше 1024 символов")
     if question is None:
-        await.ctx.send(embed=embedError)
+        await ctx.send(embed=embedError)
         return
     if question is not None:
         if len(question) >= 1024:
@@ -51,7 +51,24 @@ async def _8ball(ctx, *, question=None):
 
 @client.command(pass_context=True)
 async def server(ctx):
-    embed = discord.Embed(title="Информация про сервер", description=f"Название сервера: **{ctx.guild.name}**\nРегион сервера: **{ctx.guild.region}**")
+    regions = {
+         'europe' : ":flag_eu: Европа",
+        'russia' : ":flag_ru: Россия",
+        'brazil' : ":flag_br: Бразилия",
+        'hongkong' : ":flag_hk: Гонконг",
+        'india' : ":flag_in: Индия",
+        'japan' : ":flag_jp: Япония",
+        'singapore' : ":flag_sg: Сингапур",
+        'southafrica' : ":flag_sa: Южная Африка",
+        'sydney' : ":flag_au: Сидней",
+        'us-central' : ":flag_us: Центральная США",
+        'us-east' : ":flag_us: Восточная США",
+        'us-south' : ":flag_us: Южная США",
+        'us-west' : ":flag_us: Западная США"
+    }
+    region = regions[str(ctx.guild.region)]
+    embed = discord.Embed(title="Информация про сервер", description=f"Название сервера: **{str(ctx.guild.name)}**\nРегион сервера: **{region}**\n")
+    embed.set_thumbnail(url=ctx.guild.icon_url)
     await ctx.send(embed=embed)
 
 
