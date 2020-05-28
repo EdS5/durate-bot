@@ -67,7 +67,8 @@ async def server(ctx):
         'us-west' : ":flag_us: Западная США"
     }
     region = regions[str(ctx.guild.region)]
-    embed = discord.Embed(title="Информация про сервер", description=f"Название сервера: **{str(ctx.guild.name)}**\nРегион сервера: **{region}**\n")
+    embed = discord.Embed(title="Информация про сервер", description=f"Название сервера: **{str(ctx.guild.name)}**\nРегион сервера: **{region}**")
+    embed.add_field(name="Каналы", value=f"Всего каналов: **{len(ctx.guild.text_channels) + len(ctx.guild.voice_channels)}**\nТекстовые каналы: **{len(ctx.guild.text_channels)}**\nГолосовые каналы: **{len(ctx.guild.voice_channels)}**")
     embed.set_thumbnail(url=ctx.guild.icon_url)
     await ctx.send(embed=embed)
 
