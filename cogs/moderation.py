@@ -21,10 +21,10 @@ class Moderation(commands.Cog):
                     await ctx.send(embed=embed)
                 if number == 0:
                     ember = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Введите число от 1 до 99")
-                    await ctx.send(ember)
+                    await ctx.send(embed=ember)
                 if number > 99:
                     ember = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Введите число от 1 до 99")
-                    await ctx.send(ember)
+                    await ctx.send(embed=ember)
                 else:
                     await ctx.channel.purge(limit=number+1)
                     embed = discord.Embed(title="!clear", color=2899536, description=f"Было удалено {number} сообщений")
