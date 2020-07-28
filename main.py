@@ -1,10 +1,10 @@
 import discord
 from discord.ext import commands
+import os
 
 
 
 client = commands.Bot(command_prefix = '!')
-TOKEN = 'NjM3NzUwNzU3MzE5MjQ1ODM1.XbStrQ._qLJAV3c0xin7BVTGSOz3o5YmvI'
 client.remove_command("help")
 
 
@@ -45,4 +45,4 @@ for cog in cogs:
 
 
 
-client.run(TOKEN)
+token = os.environ.get('BOT_TOKEN')
