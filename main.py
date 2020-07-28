@@ -6,6 +6,7 @@ import os
 
 client = commands.Bot(command_prefix = '!')
 client.remove_command("help")
+__version__ = "0.3"
 
 
 
@@ -34,6 +35,26 @@ async def on_ready():
    # else:
     #    pass
 
+@client.command(name = "8ball")
+async def _8ball(ctx, *, question=None):
+    responses = ('Да :white_check_mark:',
+                 'Нет :x:',
+                 'Возможно',
+                 'Никак нет :name_badge:',
+                 'Даже не думай!')
+    embed = discord.Embed(title = 'Волшебный шар', colour=discord.Colour.purple())
+    embed.add_field(name="**Вопрос:**", value=question)
+    embed.add_field(name="**Ответ:**", value=f"{random.choice(responses)}")
+    embedError = discord.Embed(title="Ошибка", description="Не были введены аргемуенты")
+    embedLenError = discord.Embed(title="Ошибка", description="Введите текст меньше 1024 символов")
+    if question is None:
+        await ctx.send(embed=embedError)
+        return
+    if question is not None:
+        if len(question) >= 1024:
+            await ctx.send(embed=embedLenError)
+            return
+    await ctx.send(embed=embed)
 
 
 
@@ -46,4 +67,3 @@ for cog in cogs:
 
 
 token = os.environ.get('BOT_TOKEN')
-client.run(str(token))
