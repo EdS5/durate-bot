@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from main import __version__
 
 
 class Information(commands.Cog):
@@ -9,7 +10,7 @@ class Information(commands.Cog):
     @commands.command(name="help")
     async def help(self, ctx):
         mainhelp = discord.Embed(title="Информация про бота",
-                                 description="**Текущая версия бота:**  0.1.4\n**Язык бота:**  Русский\n**Часовой пояс:**  Москва (GMT+3)\n\n_**Чтобы просмотреть список команд, напишите `!cmd`**_",
+                                 description=f"**Текущая версия бота:**  {__version__}4\n**Язык бота:**  Русский\n**Часовой пояс:**  Москва (GMT+3)\n\n_**Чтобы просмотреть список команд, напишите `!cmd`**_",
                                  color=discord.Color.orange())
         await ctx.send(embed=mainhelp)
 

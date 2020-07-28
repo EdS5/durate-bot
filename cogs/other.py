@@ -16,7 +16,7 @@ class Other(commands.Cog):
     @commands.command(name="support")
     async def support(self, ctx):
         server = discord.Embed(title="Сервер поддержки", color=0x562FAD,
-                               description="Чтобы вступить на сервер поддержки бота, нажмите [сюда](https://discord.gg/7nnGaKW)")
+                               description="Чтобы вступить на сервер поддержки бота, нажмите [сюда](https://discord.gg/RQPZZzA)")
         await ctx.send(embed=server)
 
 
