@@ -63,7 +63,7 @@ class Moderation(commands.Cog):
     async def ban_error(self, ctx, error):
         if isinstance(error, commands.BadArgument):
             nomember = discord.Embed(title="Ошибка", color=discord.Color.red(),
-                                     description="Такого пользователя нету на данном сервере")
+                                     description="Такого пользователя нет на данном сервере")
             await ctx.send(embed=nomember)
 
 
@@ -94,7 +94,7 @@ class Moderation(commands.Cog):
     async def kick_error(self, ctx, error):
         if isinstance(error, commands.BadArgument):
             nomember = discord.Embed(title="Ошибка", color=discord.Color.red(),
-                                     description="Такого пользователя нету на данном сервере")
+                                     description="Такого пользователя нет на данном сервере")
             await ctx.send(embed=nomember)
 
 
