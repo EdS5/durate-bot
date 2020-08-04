@@ -16,6 +16,7 @@ class Moderation(commands.Cog):
                 await ctx.send(embed=noargem)
             else:
                 if ctx.author.guild_permissions.manage_messages is True:
+                    number = int(number)
                     if number == 0:
                         ember = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Введите число от 1 до 99")
                         await ctx.send(embed=ember)
@@ -23,7 +24,6 @@ class Moderation(commands.Cog):
                         ember = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Введите число от 1 до 99")
                         await ctx.send(embed=ember)
                     else:
-                        number = int(number)
                         await ctx.channel.purge(limit=number+1)
                         await sleep(2.5)
                         embed = discord.Embed(title="!clear", color=2899536, description=f"Было удалено {number} сообщений")
