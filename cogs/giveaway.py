@@ -60,10 +60,9 @@ class Giveaway(commands.Cog):
             emer = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Неправильный тип аргументов")
             await ctx.message.delete(delay=1.0)
             await ctx.send(embed=emer, delete_after=5.0)
-        except TypeError:
-            print("type")
         except IndexError:
-            print("index")
+            emere = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Победителей нет, так как никто не учавствовал")
+            await ctx.send(embed=emere)
 
 
     @giveaway.error
