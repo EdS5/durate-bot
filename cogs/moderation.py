@@ -31,7 +31,7 @@ class Moderation(commands.Cog):
                 else:
                     permer = discord.Embed(title="Ошибка", color=discord.Color.red(), description="У вас недостаточно прав")
                     await ctx.send(embed=permer)
-        except TypeError:
+        except ValueError:
             embe = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Аргумент должен быть числом")
             await ctx.send(embed=embe)
 
