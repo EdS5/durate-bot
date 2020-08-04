@@ -15,7 +15,7 @@ class Moderation(commands.Cog):
                 noargem = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Не были введены аргументы")
                 await ctx.send(embed=noargem)
             else:
-                if ctx.author.guild_permissions.manage_messages is True:)
+                if ctx.author.guild_permissions.manage_messages is True:
                     if number == 0:
                         ember = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Введите число от 1 до 99")
                         await ctx.send(embed=ember)
