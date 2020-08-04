@@ -12,7 +12,7 @@ __version__ = "0.3"
 
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.online, activity=discord.Activity(name="version 0.3 | !help", url="https://www.twitch.tv/eds52", type=discord.ActivityType.watching))
+    await client.change_presence(status=discord.Status.online, activity=discord.Activity(name="version 0.3.1 | !help", url="https://www.twitch.tv/eds52", type=discord.ActivityType.watching))
     print("Bot is ready.")
 
 
