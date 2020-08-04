@@ -68,7 +68,7 @@ class Giveaway(commands.Cog):
     async def giveaway_error(self, ctx, error):
         if isinstance(error, commands.BadArgument):
             emerr = discord.Embed(title="Ошибка", color=discord.Color.red(),
-                                  description='Такого канала нету на данном сервере')
+                                  description='Такого канала нет на данном сервере')
             await ctx.send(embed=emerr)
 
 
