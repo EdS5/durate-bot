@@ -22,7 +22,7 @@ class Giveaway(commands.Cog):
                     await ctx.send(embed=argEmbed)
                 else:
                     CorrectlyEmbed = discord.Embed(title="Розыгрыш создан!", color=discord.Color.blue(),
-                                                  description=f"**Время розыгрыша:** {arg1} секунд\n**Канал сообщения:** <#{arg2}>\n**Приз:** {args}")
+                                                  description=f"**Время розыгрыша:** {arg1} секунд\n**Канал сообщения:** {arg2}\n**Приз:** {args}")
                     await ctx.message.delete(delay=1.7)
                     await ctx.send(embed=CorrectlyEmbed, delete_after=15.0)
 
@@ -61,7 +61,8 @@ class Giveaway(commands.Cog):
             await ctx.message.delete(delay=1.0)
             await ctx.send(embed=emer, delete_after=5.0)
         except TypeError:
-            pass
+            emere = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Победителей нет, так как никто не учавствовал"
+            await ctx.send(embed=emere)
 
     @giveaway.error
     async def giveaway_error(self, ctx, error):
