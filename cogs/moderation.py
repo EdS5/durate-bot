@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from asyncio import sleep
 
 
 class Moderation(commands.Cog):
@@ -9,29 +10,30 @@ class Moderation(commands.Cog):
 
     @commands.command(name = "clear")
     async def clear(self, ctx, number=None):
-        if number is None:
-            noargem = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Не были введены аргументы")
-            await ctx.send(embed=noargem)
-        else:
-            if ctx.author.guild_permissions.manage_messages is True:
-                if number is not int:
-                    number = int(number)
-                    await ctx.channel.purge(limit=number+1)
-                    embed = discord.Embed(title="!clear", color=2899536, description=f"Было удалено {number} сообщений")
-                    await ctx.send(embed=embed)
-                if number == 0:
-                    ember = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Введите число от 1 до 99")
-                    await ctx.send(embed=ember)
-                if number > 99:
-                    ember = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Введите число от 1 до 99")
-                    await ctx.send(embed=ember)
-                else:
-                    await ctx.channel.purge(limit=number+1)
-                    embed = discord.Embed(title="!clear", color=2899536, description=f"Было удалено {number} сообщений")
-                    await ctx.send(embed=embed, delete_after=1.5)
+        try:
+            if number is None:
+                noargem = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Не были введены аргументы")
+                await ctx.send(embed=noargem)
             else:
-                permer = discord.Embed(title="Ошибка", color=discord.Color.red(), description="У вас недостаточно прав")
-                await ctx.send(embed=permer)
+                if ctx.author.guild_permissions.manage_messages is True:)
+                    if number == 0:
+                        ember = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Введите число от 1 до 99")
+                        await ctx.send(embed=ember)
+                    if number > 99:
+                        ember = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Введите число от 1 до 99")
+                        await ctx.send(embed=ember)
+                    else:
+                        number = int(number)
+                        await ctx.channel.purge(limit=number+1)
+                        await sleep(2.5)
+                        embed = discord.Embed(title="!clear", color=2899536, description=f"Было удалено {number} сообщений")
+                        await ctx.send(embed=embed, delete_after=1.5)
+                else:
+                    permer = discord.Embed(title="Ошибка", color=discord.Color.red(), description="У вас недостаточно прав")
+                    await ctx.send(embed=permer)
+        except TypeError:
+            embe = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Аргумент должен быть числом")
+            await ctx.send(embed=embe)
 
 
     @commands.command(name="ban")
