@@ -61,7 +61,7 @@ class Giveaway(commands.Cog):
             await ctx.message.delete(delay=1.0)
             await ctx.send(embed=emer, delete_after=5.0)
         except IndexError:
-            emere = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Победителей нет, так как никто не учавствовал")
+            emere = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Победителей нет, так как никто не участвовал")
             await ctx.send(embed=emere)
 
 
