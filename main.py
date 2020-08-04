@@ -6,7 +6,7 @@ import os
 
 client = commands.Bot(command_prefix = '!')
 client.remove_command("help")
-__version__ = "0.3"
+__version__ = "0.3.1"
 
 
 
