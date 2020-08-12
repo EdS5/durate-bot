@@ -8,7 +8,7 @@ class Other(commands.Cog):
 
     @commands.command(name="invite")
     async def invite(self, ctx):
-        invlink = discord.Embed(title="Durate Bot", color=0x359475,
+        invlink = discord.Embed(title="Durate Bot", color=0x62FD2A,
                                 description=f"**Спасибо, что выбрали меня!** :heartbeat:\n\nЧтобы пригласить бота к себе на сервер, нажмите [сюда](https://discordapp.com/oauth2/authorize?client_id=637750757319245835&scope=bot&permissions=805314622)")
         await ctx.send(embed=invlink)
 
