@@ -78,7 +78,7 @@ class Moderation(commands.Cog):
                     nou = discord.Embed(title="Ошибка", color=discord.Color.red(), description="Вы не можете кикнуть себя")
                     await ctx.send(embed=nou)
                 else:
-                    banmsg = discord.Embed(title="Бан", color=discord.Color.dark_blue(),
+                    banmsg = discord.Embed(title="Кик", color=discord.Color.dark_blue(),
                                            description=f"Пользователь {member} был кикнут!\nПричина: **{args}**")
                     await ctx.send(embed=banmsg)
                     dmmsg = discord.Embed(title=f"{ctx.guild.name}", color=discord.Color.red(), description=f"Вас кикнули с сервера **{ctx.guild.name}**!\nПричина: **{args}**")
