@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import random
 
+
 class Ball(commands.Cog):
     def __init__(self, bot):
         self.client = bot
@@ -12,6 +13,7 @@ class Ball(commands.Cog):
                      'Нет :x:',
                      'Возможно',
                      'Никак нет :name_badge:')
+
         embed = discord.Embed(title='Волшебный шар', colour=discord.Colour.purple())
         embed.add_field(name="**Вопрос:**", value=args)
         embed.add_field(name="**Ответ:**", value=f"{random.choice(responses)}")
@@ -21,11 +23,12 @@ class Ball(commands.Cog):
             await ctx.send(embed=embedError)
             return
         if args is not None:
-            if len(args) >= 1024:
+            if len(args) >= 1024:  # Discord limits
                 await ctx.send(embed=embedLenError)
                 return
         await ctx.send(embed=embed)
 
 
+# Loading a cog
 def setup(bot):
     bot.add_cog(Ball(bot))
