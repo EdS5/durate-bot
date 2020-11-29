@@ -1,10 +1,10 @@
 import discord
 from discord.ext import commands
-import os
+import json
 
 client = commands.Bot(command_prefix='!')
 client.remove_command("help")  # This needs for custom help command
-__version__ = "0.3.2"  # Version
+__version__ = "0.3.2.1b"  # Version
 
 
 @client.event
@@ -18,7 +18,7 @@ async def on_ready():
 
 
 @client.event
-async def on_command_error(error):
+async def on_command_error(ctx, error):
     # Ignoring CommandNotFound error
 
     if error == discord.ext.commands.errors.CommandNotFound:
@@ -26,12 +26,14 @@ async def on_command_error(error):
 
 
 # Cogs list
-cogs = {"information", "8ball", "giveaway", "avatar", "moderation", "other"}
+cogs = {"information", "8ball", "giveaway", "avatar", "moderation", "other", "dev"}
 
 # Loading cogs
 for cog in cogs:
     client.load_extension(f"cogs.{cog}")
 
 # Authorizing the bot
-token = """paste ur token here"""
+with open("config.json", "r") as f:
+    data = json.load(f)
+token = data["token"]
 client.run(str(token))
